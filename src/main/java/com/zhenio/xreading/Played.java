@@ -6,10 +6,11 @@ public class Played {
     private Object data;
     private int code;
 
+    //常用错误信息
     public static final int SUCCESS_CODE = 200;
     public static final String SUCCESS_MSG = "请求成功";
     public static final int ERROR_CODE = 201;
-    public static final String ERROR_MSG = "当前没有权限,请登入";
+    public static final String ERROR_MSG = "请求失败";
 
     public static Played isOk(Object data) {
         Builder builder = new Builder();
@@ -19,7 +20,6 @@ public class Played {
                 .error(false);
         return builder.build();
     }
-
     public static Played isOk(String msg, Object data) {
         Builder builder = new Builder();
         builder.msg(msg)
@@ -28,8 +28,6 @@ public class Played {
                 .error(false);
         return builder.build();
     }
-
-
     public static Played isOk(String msg, Object data, int code) {
         Builder builder = new Builder();
         builder.msg(msg)
@@ -46,6 +44,17 @@ public class Played {
                 .data(null)
                 .error(true);
         return builder.build();
+    }
+
+    //直接null
+    public static Played isError(Object object) {
+        Builder builder = new Builder();
+        builder.msg(ERROR_MSG)
+                .code(ERROR_CODE)
+                .data(object)
+                .error(true);
+        return builder.build();
+
     }
 
     public static Played isError(String errorMsg, Object data, int code) {
