@@ -3,6 +3,7 @@ package com.zhenio.xreading.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.zhenio.xreading.Played;
 import com.zhenio.xreading.mapper.SharesMapper;
 import com.zhenio.xreading.model.Shares;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,14 @@ public class ShareService {
 
     }
 
-    public void page(){
+    public void page() {
 
+    }
+    public Played findAll() {
+        List<Shares> all = sharesMapper.findAll();
+        if (all.isEmpty()) {
+            return Played.isError("系统故障，请稍后重试");
+        }
+        return Played.isOk(all);
     }
 }

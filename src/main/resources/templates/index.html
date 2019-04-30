@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+</head>
+<body>
+<div class="main">
+
+</div>
+</body>
+<script type="text/javascript">
+    $.ajax({
+        url: "http://localhost:8080/api/develop/all",
+        type: "get",
+        dataType: "text/json",
+        success: function (data) {
+            var code = data.get("code")
+            var shares = data.get("data")
+            console.log(data)
+            if (code == 200) {
+                alert("获取成功")
+                for (i = 0; i <= shares.length; i++) {
+                    var abbrev = shares[i].get("abbrev")
+                    var fdcode = shares[i].get("fdcode")
+                    var id = shares[i].get("id")
+                    var spell = shares[i].get("spell");
+                    var type = shares[i].get("type")
+                    $(".main").insertBefore = abbrev
+                }
+            }
+        },
+        error: function (data) {
+
+        }
+    })
+</script>
+</html>

@@ -16,20 +16,18 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserServcie userServcie;
-
-    @PostMapping("/user/login")
+    @PostMapping("user/login")
     public Played login(@RequestBody User user) {
         return userServcie.login(user.getName(), user.getPassword());
     }
-    @GetMapping("/user/register")
+    @GetMapping("user/register")
     public Played register(@RequestParam String name, @RequestParam String password,HttpRequest request) {
         URI uri = request.getURI();
         return userServcie.register(name, password);
     }
-    @GetMapping("/list")
+    @GetMapping("list")
     public Played list(){
         return userServcie.findAll();
     }
-
 
 }

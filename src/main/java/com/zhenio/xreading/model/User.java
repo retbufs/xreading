@@ -1,6 +1,8 @@
 package com.zhenio.xreading.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private long Id;
     private String name;
     private String password;

@@ -16,11 +16,13 @@ public class MyBatisConfig {
     private DataSourceProperties dataSourceProperties;
 
     @Bean(name="dataSource")
-    public DataSource dataSource(){
+    public  DataSource dataSource(){
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl(dataSourceProperties.getUrl());
         return dataSource;
     }
+
+    @Bean
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource());

@@ -4,12 +4,14 @@ import com.zhenio.xreading.Played;
 import com.zhenio.xreading.service.ShareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
+@RestController()
+@RequestMapping("/api/develop/")
 public class DeveController {
     @Autowired
     ShareService shareService;
@@ -40,11 +42,9 @@ public class DeveController {
 //        return JsonData.search_data;
 //    }
 
-    @GetMapping("/api")
+    @GetMapping("api")
     public Played list() {
         Map map = new HashMap<>();
-
-
         map.put("home", "/api/develop/home");
         map.put("user", "/api/develop/user");
         map.put("course", "/api/develop/course");
@@ -53,10 +53,11 @@ public class DeveController {
         map.put("search", "/api/develop/search");
         return Played.isOk(map);
     }
-
-    @GetMapping("/api/develop/search")
-    public Played paging(int count,int row,int page){
-        return Played.isOk("");
+    @GetMapping("all")
+    public Played all() {
+        //查询数据
+        return shareService.findAll();
     }
+
 
 }
