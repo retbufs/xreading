@@ -16,33 +16,8 @@ public class DeveController {
     @Autowired
     ShareService shareService;
 
-//    @GetMapping("/api/develop/home")
-//    public String home(){
-//        return JsonData.home_data;
-//    }
-//    @GetMapping("/api/develop/course")
-//    public String courseDetail(){
-//        return JsonData.course;
-//    }
-//    @GetMapping("/api/develop/user")
-//    public String userInfo(){
-//        return JsonData.userInfo;
-//    }
-//    @GetMapping("/api/develop/update")
-//    public String  update(){
-//        return  JsonData.update_data;
-//    }
-//    @GetMapping("/api/develop/splash")
-//    public String splash(){
-//        return JsonData.splash_ad_data;
-//    }
-//
-//    @GetMapping("/api/develop/search")
-//    public String search(){
-//        return JsonData.search_data;
-//    }
 
-    @GetMapping("api")
+    @GetMapping("impl")
     public Played list() {
         Map map = new HashMap<>();
         map.put("home", "/api/develop/home");
@@ -50,14 +25,22 @@ public class DeveController {
         map.put("course", "/api/develop/course");
         map.put("update", "/api/develop/update");
         map.put("splash", "/api/develop/splash");
-        map.put("search", "/api/develop/search");
+        map.put("search", "/api/develop/search?wd={content}");
         return Played.isOk(map);
     }
-    @GetMapping("all")
-    public Played all() {
-        //查询数据
-        return shareService.findAll();
+    @GetMapping("home")
+    public Played home() {
+        Map map = new HashMap<>();
+        map.put("head", "/api/develop/home/head");
+        map.put("body", "/api/develop/home/body");
+        map.put("video", "/api/develop/home/video");
+        map.put("footer", "/api/develop/home/footer");
+        map.put("time", "/api/develop/home/time");
+        return Played.isOk(map);
     }
-
+    @GetMapping("wd")
+    public Played findAll(){
+        return  shareService.findAll();
+    }
 
 }

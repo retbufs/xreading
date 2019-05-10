@@ -74,7 +74,6 @@ public class Test {
                         System.out.println(a.getType());
                     }
 
-
                     tests++;
                     //  method.invoke(null);
                     passed++;
