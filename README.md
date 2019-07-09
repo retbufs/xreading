@@ -1,2 +1,2 @@
 # xreading
-基于Spring boot整合SpringBoot+MyBatis+Sqlite
+SpringBoot+MyBatis+Sqlite 后台脚手架
